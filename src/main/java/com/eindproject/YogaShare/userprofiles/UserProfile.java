@@ -5,7 +5,7 @@ import com.eindproject.YogaShare.users.User;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "userprofiles")
+@Table(name = "user_profiles")
 public class UserProfile {
 
     //attributes
@@ -112,6 +112,14 @@ public class UserProfile {
     }
 
 
+    //relation getters&setters
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
 
 }

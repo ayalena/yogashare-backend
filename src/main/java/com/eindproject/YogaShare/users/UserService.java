@@ -1,9 +1,8 @@
 package com.eindproject.YogaShare.users;
 
-import com.eindproject.YogaShare.exceptions.RecordNotFoundException;
+import com.eindproject.YogaShare.exceptions.UserNotFoundException;
 import com.eindproject.YogaShare.userprofiles.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -35,7 +34,7 @@ public class UserService {
             User user = optionalUser.get();
             return user;
         } else {
-            throw new RecordNotFoundException();
+            throw new UserNotFoundException();
         }
     }
 
@@ -46,7 +45,7 @@ public class UserService {
         if(user.isPresent()) {
             return user.get().getUserProfile();
         } else {
-            throw new RecordNotFoundException();
+            throw new UserNotFoundException();
         }
     }
 
@@ -60,7 +59,7 @@ public class UserService {
             User newUser = userRepository.save(user);
             return newUser.getUsername();
         } catch (Exception ex) {
-            throw new RecordNotFoundException();
+            throw new UserNotFoundException();
         }
     }
 
@@ -77,7 +76,7 @@ public class UserService {
         if (userRepository.existsById(id)) {
             userRepository.deleteById(id);
         } else {
-            throw new RecordNotFoundException();
+            throw new UserNotFoundException();
         }
     }
 

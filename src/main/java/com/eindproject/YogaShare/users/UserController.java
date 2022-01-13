@@ -4,7 +4,6 @@ import com.eindproject.YogaShare.userprofiles.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 
@@ -20,7 +19,7 @@ public class UserController {
     }
 
     //GET
-    @GetMapping("") //only for admin
+    @GetMapping("") //admin only
     public ResponseEntity<Object> getAllUsers() {
         return ResponseEntity.ok().body(userService.getAllUsers());
     }
@@ -30,13 +29,13 @@ public class UserController {
 //        return ResponseEntity.ok().body(userService.getUserById(id));
 //    }
 
-    @GetMapping("/{username}")
+    @GetMapping("/{username}") //for logged-in users and admin
     public ResponseEntity<Object> getUser(@PathVariable("username") String username) {
         return ResponseEntity.ok().body(userService.getUserByUsername(username));
     }
 
     @GetMapping("/{id}/userprofile")
-    public ResponseEntity<Object> getUserUserProfile(@PathVariable("id") Long id) {
+    public ResponseEntity<Object> getUserProfile(@PathVariable("id") Long id) {
         UserProfile userProfiles = userService.getUserProfile(id);
         return ResponseEntity.ok(userProfiles);
     }
@@ -56,7 +55,7 @@ public class UserController {
 //    }
 
     //DELETE
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}") //admin only
     public ResponseEntity<Object> deleteUser(@PathVariable("id") Long id) {
         userService.deleteUser(id);
         return ResponseEntity.ok().build();
