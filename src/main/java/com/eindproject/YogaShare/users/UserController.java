@@ -48,11 +48,11 @@ public class UserController {
     }
 
     //PUT
-//    @PutMapping(value = "/{username}")
-//    public ResponseEntity<Object> updateUser(@PathVariable("username") String username, @RequestBody User user) {
-//        userService.updateUser(username, user);
-//        return ResponseEntity.noContent().build();
-//    }
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Object> updateUsername(@PathVariable("id") Long id, @RequestBody User user) {
+        userService.updateUsername(id, user);
+        return ResponseEntity.ok().build();
+    }
 
     //DELETE
     @DeleteMapping("/delete/{id}") //admin only

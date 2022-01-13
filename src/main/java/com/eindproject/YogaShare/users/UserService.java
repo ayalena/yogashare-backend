@@ -65,10 +65,16 @@ public class UserService {
 
 
     //PUT methods
-//    public void updateUser(String username, User newUser) {
-//        Optional<User> userOptional = userRepository.findById(username);
-//        //method to update user
-//    }
+    public void updateUsername(Long id, User newUser) {
+        //check to see if user exists
+        if(!userRepository.existsById(id)) {
+            throw new UserNotFoundException();
+        }
+        //update and save it
+        User user = userRepository.findById(id).get();
+        user.setUsername(newUser.getUsername());
+        userRepository.save(user);
+    }
 
 
     //DELETE methods
