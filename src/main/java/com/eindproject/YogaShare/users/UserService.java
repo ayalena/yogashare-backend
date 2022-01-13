@@ -19,12 +19,23 @@ public class UserService {
     }
 
     //methods
-    public Collection getAllUsers() {
+    public Collection<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    public Optional<User> getUser(String username) {
-        return userRepository.findById(username);
+//    public Optional<User> getUserById(Long id) {
+//        return userRepository.findById(id);
+//    }
+
+    public User getUserByUsername(String username) {
+        Optional<User> optionalUser = userRepository.findByUsername(username);
+        //check if there is a user by that username
+        if(optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            return user;
+        } else {
+            throw new RecordNotFoundException();
+        }
     }
 
     public String createUser(User userPostRequest) {
@@ -40,10 +51,10 @@ public class UserService {
         }
     }
 
-    public void updateUser(String username, User newUser) {
-        Optional<User> userOptional = userRepository.findById(username);
-        //method to update user
-    }
+//    public void updateUser(String username, User newUser) {
+//        Optional<User> userOptional = userRepository.findById(username);
+//        //method to update user
+//    }
 
         public void deleteUser(Long id) {
         if (userRepository.existsById(id)) {
@@ -52,6 +63,7 @@ public class UserService {
             throw new RecordNotFoundException();
         }
     }
+
 
 
 }

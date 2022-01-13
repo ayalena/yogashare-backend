@@ -24,9 +24,14 @@ public class UserController {
         return ResponseEntity.ok().body(userService.getAllUsers());
     }
 
-    @GetMapping("/{username}") //for admin and logged-in users
+//    @GetMapping("/{id}") //for admin and logged-in users
+//    public ResponseEntity<Object> getUserById(@PathVariable("id") Long id) {
+//        return ResponseEntity.ok().body(userService.getUserById(id));
+//    }
+
+    @GetMapping("/{username}")
     public ResponseEntity<Object> getUser(@PathVariable("username") String username) {
-        return ResponseEntity.ok().body(userService.getUser(username));
+        return ResponseEntity.ok().body(userService.getUserByUsername(username));
     }
 
     //POST
@@ -37,11 +42,11 @@ public class UserController {
     }
 
     //PUT
-    @PutMapping(value = "/{username}")
-    public ResponseEntity<Object> updateUser(@PathVariable("username") String username, @RequestBody User user) {
-        userService.updateUser(username, user);
-        return ResponseEntity.noContent().build();
-    }
+//    @PutMapping(value = "/{username}")
+//    public ResponseEntity<Object> updateUser(@PathVariable("username") String username, @RequestBody User user) {
+//        userService.updateUser(username, user);
+//        return ResponseEntity.noContent().build();
+//    }
 
     //DELETE
     @DeleteMapping("/delete/{id}")
