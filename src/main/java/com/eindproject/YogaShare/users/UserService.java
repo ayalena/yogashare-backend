@@ -1,6 +1,7 @@
 package com.eindproject.YogaShare.users;
 
 import com.eindproject.YogaShare.exceptions.RecordNotFoundException;
+import com.eindproject.YogaShare.userprofiles.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    //methods
+    //GET methods
     public Collection<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -30,7 +31,7 @@ public class UserService {
     public User getUserByUsername(String username) {
         Optional<User> optionalUser = userRepository.findByUsername(username);
         //check if there is a user by that username
-        if(optionalUser.isPresent()) {
+        if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             return user;
         } else {
@@ -38,6 +39,18 @@ public class UserService {
         }
     }
 
+    public UserProfile getUserProfile(Long id) {
+        //find the user by id
+        Optional<User> user = userRepository.findById(id);
+        //check if user exists
+        if(user.isPresent()) {
+            return user.get().getUserProfile();
+        } else {
+            throw new RecordNotFoundException();
+        }
+    }
+
+    //POST methods
     public String createUser(User userPostRequest) {
         try {
             User user = new User();
@@ -51,19 +64,22 @@ public class UserService {
         }
     }
 
+
+    //PUT methods
 //    public void updateUser(String username, User newUser) {
 //        Optional<User> userOptional = userRepository.findById(username);
 //        //method to update user
 //    }
 
-        public void deleteUser(Long id) {
+
+    //DELETE methods
+    public void deleteUser(Long id) {
         if (userRepository.existsById(id)) {
             userRepository.deleteById(id);
         } else {
             throw new RecordNotFoundException();
         }
     }
-
 
 
 }

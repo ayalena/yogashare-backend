@@ -1,5 +1,6 @@
 package com.eindproject.YogaShare.users;
 
+import com.eindproject.YogaShare.userprofiles.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,12 @@ public class UserController {
     @GetMapping("/{username}")
     public ResponseEntity<Object> getUser(@PathVariable("username") String username) {
         return ResponseEntity.ok().body(userService.getUserByUsername(username));
+    }
+
+    @GetMapping("/{id}/userprofile")
+    public ResponseEntity<Object> getUserUserProfile(@PathVariable("id") Long id) {
+        UserProfile userProfiles = userService.getUserProfile(id);
+        return ResponseEntity.ok(userProfiles);
     }
 
     //POST

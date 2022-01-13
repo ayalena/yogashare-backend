@@ -1,9 +1,11 @@
 package com.eindproject.YogaShare.userprofiles;
 
+import com.eindproject.YogaShare.users.User;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "userprofile")
+@Table(name = "userprofiles")
 public class UserProfile {
 
     //attributes
@@ -19,8 +21,29 @@ public class UserProfile {
     private String postalCode;
     private String country;
 
+    //relations
+    @OneToOne(fetch = FetchType.LAZY)
+    private User user;
+
     //constructors
     public UserProfile() {
+    }
+
+    public UserProfile(String email,
+                       String firstName,
+                       String lastName,
+                       int age, String address,
+                       String postalCode,
+                       String country,
+                       User user) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.address = address;
+        this.postalCode = postalCode;
+        this.country = country;
+        this.user = user;
     }
 
     //getters&setters
@@ -87,4 +110,8 @@ public class UserProfile {
     public void setCountry(String country) {
         this.country = country;
     }
+
+
+
+
 }

@@ -1,5 +1,7 @@
 package com.eindproject.YogaShare.users;
 
+import com.eindproject.YogaShare.userprofiles.UserProfile;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,6 +22,10 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    //relations
+    @OneToOne(fetch = FetchType.LAZY)
+    private UserProfile userProfile;
+
     //constructors
     public User(String username, String email, String password) {
         this.username = username;
@@ -32,7 +38,6 @@ public class User {
     }
 
     //getters&setters
-
     public Long getId() {
         return id;
     }
@@ -63,5 +68,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    //relation getters&setters
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
+
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
     }
 }
