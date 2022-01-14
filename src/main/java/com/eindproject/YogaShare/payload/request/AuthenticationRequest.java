@@ -1,23 +1,17 @@
-package com.eindproject.YogaShare.dto.request;
+package com.eindproject.YogaShare.payload.request;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotBlank;
 
 public class AuthenticationRequest {
 
-    @NotEmpty
+    //attributes
+    @NotBlank
     private String username;
 
-    @Size(min=8)
+    @NotBlank
     private String password;
 
-    public AuthenticationRequest() {
-    }
-    public AuthenticationRequest(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-
+    //getters&setters
     public String getUsername() {
         return username;
     }

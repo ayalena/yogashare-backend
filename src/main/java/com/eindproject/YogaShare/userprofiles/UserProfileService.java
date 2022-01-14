@@ -4,7 +4,6 @@ import com.eindproject.YogaShare.users.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Optional;
 
 
 @Service

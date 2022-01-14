@@ -1,44 +1,45 @@
 package com.eindproject.YogaShare.authorities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "authorities")
-public class Authority implements Serializable {
+public class Authority {
 
     //attributes
     @Id
-    @Column(nullable = false)
-    private String username;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    @Id
-    @Column(nullable = false)
-    private String authority;
+    @Enumerated(EnumType.STRING)
+    private EAuthority name;
 
     //constructors
-    public Authority(String username, String authority) {
-        this.username = username;
-        this.authority = authority;
+    public Authority() {
+    }
+
+    public Authority(EAuthority name) {
+        this.name = name;
     }
 
     //getters&setters
-    public String getUsername() {
-        return username;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getAuthority() {
-        return authority;
+    public EAuthority getName() {
+        return name;
     }
 
-    public void setAuthority(String authority) {
-        this.authority = authority;
+    public void setName(EAuthority name) {
+        this.name = name;
     }
+
+
+
 }
