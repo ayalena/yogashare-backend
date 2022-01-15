@@ -1,10 +1,11 @@
-INSERT INTO users (username, password, enabled)
+INSERT INTO users (username, password, email)
 VALUES
-    ('user', '$2a$12$SiNlD4Bd3qOig2A6dMvN4O9BlnvfVuZRaWFQsXw45HwP8oYPgMAru', TRUE),
-    ('admin', '$2a$12$SiNlD4Bd3qOig2A6dMvN4O9BlnvfVuZRaWFQsXw45HwP8oYPgMAru', TRUE);
+    ('user', '$2a$12$SiNlD4Bd3qOig2A6dMvN4O9BlnvfVuZRaWFQsXw45HwP8oYPgMAru', 'user@gmail.com'),
+    ('admin', '$2a$12$SiNlD4Bd3qOig2A6dMvN4O9BlnvfVuZRaWFQsXw45HwP8oYPgMAru', 'admin@gmail.com');
 
-INSERT INTO authorities (username, authority)
+INSERT INTO authorities (name)
 VALUES
-    ('user', 'ROLE_USER'),
-    ('admin', 'ROLE_USER'),
-    ('admin', 'ROLE_ADMIN');
+    ('ROLE_USER'),
+    ('ROLE_ADMIN');
+
+INSERT INTO user_roles(user_id, role_id) VALUES (1, 2);

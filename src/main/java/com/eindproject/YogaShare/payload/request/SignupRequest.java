@@ -1,21 +1,27 @@
 package com.eindproject.YogaShare.payload.request;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 public class SignupRequest {
 
     //attributes
     @NotBlank
+    @NotNull
     private String username;
 
     @NotBlank
+    @NotNull
     private String password;
 
     @NotBlank
+    @NotNull
+    @Email
     private String email;
 
-    private Set<String> authorities;
+    private Set<String> authority;
 
 
     //getters&setters
@@ -43,11 +49,11 @@ public class SignupRequest {
         this.email = email;
     }
 
-    public Set<String> getAuthorities() {
-        return authorities;
+    public Set<String> getAuthority() {
+        return this.authority;
     }
 
-    public void setAuthorities(Set<String> authorities) {
-        this.authorities = authorities;
+    public void setAuthority(Set<String> authority) {
+        this.authority = authority;
     }
 }

@@ -3,7 +3,6 @@ package com.eindproject.YogaShare.authorities;
 import com.eindproject.YogaShare.payload.request.AuthenticationRequest;
 import com.eindproject.YogaShare.payload.request.SignupRequest;
 import com.eindproject.YogaShare.payload.response.AuthenticationResponse;
-import com.eindproject.YogaShare.security.service.UserAuthenticateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,21 +15,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthorityController {
     //to login and signup to application
 
-    private UserAuthenticateService userAuthenticateService;
+    private AuthorityService authorityService;
 
     @Autowired
-    public AuthorityController(UserAuthenticateService userAuthenticateService) {
-        this.userAuthenticateService = userAuthenticateService;
+    public AuthorityController(AuthorityService authorityService) {
+        this.authorityService = authorityService;
     }
 
     //POST
     @PostMapping("/signin")
     public ResponseEntity<AuthenticationResponse> authenticateUser(@RequestBody AuthenticationRequest loginRequest) {
-        return userAuthenticateService.authenticateUser(loginRequest);
+        return authorityService.authenticateUser(loginRequest);
     }
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignupRequest signUpRequest) {
-        return userAuthenticateService.registerUser(signUpRequest);
+        return authorityService.registerUser(signUpRequest);
     }
 }
