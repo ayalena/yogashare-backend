@@ -1,6 +1,7 @@
 package com.eindproject.YogaShare.security;
 
 import com.eindproject.YogaShare.authorities.EAuthority;
+import com.eindproject.YogaShare.documents.DocumentStorageProperties;
 import com.eindproject.YogaShare.security.jwt.AuthEntryPointJwt;
 import com.eindproject.YogaShare.security.jwt.AuthTokenFilter;
 import com.eindproject.YogaShare.userdetails.UserDetailsServiceImpl;
@@ -33,6 +34,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     AuthEntryPointJwt unauthorizedHandler;
+
+    @Autowired
+    DocumentStorageProperties documentStorageProperties;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -85,6 +89,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 .authorizeRequests()
                 .antMatchers("/api/auth/**").permitAll() //everyone can sign up and log in
+                .antMatchers("/uploadFile").permitAll() //just to test
+                .antMatchers("/downloadFile/**").permitAll() //just to test
+
                 .anyRequest()
                 .authenticated()
 
