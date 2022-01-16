@@ -1,6 +1,7 @@
 package com.eindproject.YogaShare.security;
 
 import com.eindproject.YogaShare.authorities.EAuthority;
+//import com.eindproject.YogaShare.documents.DocumentStorageProperties;
 import com.eindproject.YogaShare.documents.DocumentStorageProperties;
 import com.eindproject.YogaShare.security.jwt.AuthEntryPointJwt;
 import com.eindproject.YogaShare.security.jwt.AuthTokenFilter;
@@ -91,6 +92,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/auth/**").permitAll() //everyone can sign up and log in
                 .antMatchers("/uploadFile").permitAll() //just to test
                 .antMatchers("/downloadFile/**").permitAll() //just to test
+//                .antMatchers("/api/file/**").permitAll() //just to test
 
                 .anyRequest()
                 .authenticated()

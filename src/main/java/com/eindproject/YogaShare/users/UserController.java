@@ -22,19 +22,19 @@ public class UserController {
 
     //GET
     @GetMapping("") //admin only
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> getAllUsers() {
         return ResponseEntity.ok().body(userService.getAllUsers());
     }
 
     @GetMapping("/{username}") //for logged-in users and admin
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     public ResponseEntity<Object> getUser(@PathVariable("username") String username) {
         return ResponseEntity.ok().body(userService.getUserByUsername(username));
     }
 
     @GetMapping("/{id}/userprofile")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     public ResponseEntity<Object> getUserProfile(@PathVariable("id") Long id) {
         UserProfile userProfiles = userService.getUserProfile(id);
         return ResponseEntity.ok(userProfiles);
@@ -42,7 +42,7 @@ public class UserController {
 
     //POST
     @PostMapping("")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> createUser(@RequestBody User user) {
         String newUsername = userService.createUser(user);
         return ResponseEntity.created(URI.create(newUsername)).build();
@@ -50,7 +50,7 @@ public class UserController {
 
     //PUT
     @PutMapping(value = "/{id}")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Object> updateUsername(@PathVariable("id") Long id, @RequestBody User user) {
         userService.updateUsername(id, user);
         return ResponseEntity.ok().build();
@@ -58,7 +58,7 @@ public class UserController {
 
     //DELETE
     @DeleteMapping("/delete/{id}") //admin only
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> deleteUser(@PathVariable("id") Long id) {
         userService.deleteUser(id);
         return ResponseEntity.ok().build();

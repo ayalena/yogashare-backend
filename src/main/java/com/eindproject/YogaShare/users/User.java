@@ -1,10 +1,13 @@
 package com.eindproject.YogaShare.users;
 
 import com.eindproject.YogaShare.authorities.Authority;
+import com.eindproject.YogaShare.files.FileDB;
 import com.eindproject.YogaShare.userprofiles.UserProfile;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -38,6 +41,12 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Authority> authorities = new HashSet<>();
+
+    //one user(teacher) can have many files
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL)
+    private List<FileDB> fileDB;
 
 
     //constructors
@@ -104,5 +113,17 @@ public class User {
         this.authorities = authorities;
     }
 
+    //files
+    public List<FileDB> getFileDB() {
+        return fileDB;
+    }
 
+    public void setFileDB(List<FileDB> fileDB) {
+        this.fileDB = fileDB;
+    }
+
+    public void addFileDB(FileDB fileDB) {
+        this.fileDB.add(fileDB);
+        fileDB.setUser(this);
+    }
 }
