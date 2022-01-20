@@ -9,15 +9,12 @@ public class SignupRequest {
 
     //attributes
     @NotBlank
-    @NotNull
     private String username;
 
     @NotBlank
-    @NotNull
     private String password;
 
     @NotBlank
-    @NotNull
     @Email
     private String email;
 

@@ -90,8 +90,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 .authorizeRequests()
                 .antMatchers("/api/auth/**").permitAll() //everyone can sign up and log in
-                .antMatchers("/uploadFile").permitAll() //just to test
-                .antMatchers("/downloadFile/**").permitAll() //just to test
+//                .antMatchers("/uploadFile").permitAll() //just to test
+//                .antMatchers("/downloadFile/**").permitAll() //just to test
 //                .antMatchers("/api/file/**").permitAll() //just to test
 
                 .anyRequest()

@@ -4,6 +4,7 @@ import com.eindproject.YogaShare.users.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/userprofile")
 public class UserProfileController {
