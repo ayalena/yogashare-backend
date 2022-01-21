@@ -11,6 +11,7 @@ import java.util.Optional;
 @Service
 public class UserService {
 
+//    @Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -28,14 +29,24 @@ public class UserService {
 //        return userRepository.findById(id);
 //    }
 
-    public User getUserByUsername(String username) {
+//    public User getUserByUsername(String username) {
+//        Optional<User> optionalUser = userRepository.findByUsername(username);
+//        //check if there is a user by that username
+//        if (optionalUser.isPresent()) {
+//            User user = optionalUser.get();
+//            return user;
+//        } else {
+//            throw new UserNotFoundException();
+//        }
+//    }
+
+    public User getUser(String username) {
         Optional<User> optionalUser = userRepository.findByUsername(username);
-        //check if there is a user by that username
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             return user;
         } else {
-            throw new UserNotFoundException();
+            throw new UserNotFoundException(username);
         }
     }
 
@@ -50,7 +61,7 @@ public class UserService {
         }
     }
 
-    //POST methods
+    //POST methods //wordt signup
     public String createUser(User userPostRequest) {
         try {
             User user = new User();
@@ -64,7 +75,7 @@ public class UserService {
         }
     }
 
-    //PUT methods
+    //PUT methods wordt afgehandeld in userprofile
     public void updateUsername(Long id, User newUser) {
         //check to see if user exists
         if(!userRepository.existsById(id)) {

@@ -1,6 +1,7 @@
 package com.eindproject.YogaShare.userprofiles;
 
 import com.eindproject.YogaShare.users.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -25,6 +26,7 @@ public class UserProfile {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id",
             nullable = false)
+    @JsonIgnore
     private User user;
 
     //constructors

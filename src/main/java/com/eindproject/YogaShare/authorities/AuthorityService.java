@@ -1,6 +1,5 @@
 package com.eindproject.YogaShare.authorities;
 
-import com.eindproject.YogaShare.authorities.EAuthority;
 import com.eindproject.YogaShare.payload.request.AuthenticationRequest;
 import com.eindproject.YogaShare.payload.request.SignupRequest;
 import com.eindproject.YogaShare.payload.response.AuthenticationResponse;

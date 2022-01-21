@@ -15,6 +15,8 @@ public class FileDB {
     private Long id;
     private String name;
     private String type;
+
+    @JsonIgnore
     private byte[] data;
 
     //relations
@@ -22,6 +24,7 @@ public class FileDB {
             optional = false)
     @JoinColumn(name = "user_id",
             nullable = false)
+    @JsonIgnore
     private User user;
 
     //constructors
