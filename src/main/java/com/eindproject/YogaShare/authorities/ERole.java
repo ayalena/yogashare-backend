@@ -1,6 +1,6 @@
 package com.eindproject.YogaShare.authorities;
 
-public enum EAuthority {
+public enum ERole {
     ROLE_USER,
     ROLE_ADMIN
 }

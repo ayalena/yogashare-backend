@@ -1,6 +1,6 @@
 package com.eindproject.YogaShare.users;
 
-import com.eindproject.YogaShare.authorities.Authority;
+import com.eindproject.YogaShare.authorities.Role;
 import com.eindproject.YogaShare.files.FileDB;
 import com.eindproject.YogaShare.userprofiles.UserProfile;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -40,7 +40,7 @@ public class User {
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Authority> authorities = new HashSet<>();
+    private Set<Role> roles = new HashSet<>();
 
     //one user(teacher) can have many files
     @OneToMany(
@@ -106,12 +106,12 @@ public class User {
     }
 
     //authorities
-    public Set<Authority> getAuthorities() {
-        return authorities;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setAuthorities(Set<Authority> authorities) {
-        this.authorities = authorities;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     //files

@@ -1,11 +1,10 @@
 package com.eindproject.YogaShare.authorities;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "authorities")
-public class Authority {
+public class Role {
 
     //attributes
     @Id
@@ -13,13 +12,13 @@ public class Authority {
     private int id;
 
     @Enumerated(EnumType.STRING)
-    private EAuthority name;
+    private ERole name;
 
     //constructors
-    public Authority() {
+    public Role() {
     }
 
-    public Authority(EAuthority name) {
+    public Role(ERole name) {
         this.name = name;
     }
 
@@ -32,11 +31,11 @@ public class Authority {
         this.id = id;
     }
 
-    public EAuthority getName() {
+    public ERole getName() {
         return name;
     }
 
-    public void setName(EAuthority name) {
+    public void setName(ERole name) {
         this.name = name;
     }
 

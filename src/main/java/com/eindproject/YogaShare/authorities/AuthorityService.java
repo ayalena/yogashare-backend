@@ -31,7 +31,7 @@ public class AuthorityService {
 
     private AuthenticationManager authenticationManager;
     private JwtUtil jwtUtil;
-    private AuthorityRepository authorityRepository;
+    private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
     private UserRepository userRepository;
 
@@ -46,8 +46,8 @@ public class AuthorityService {
     }
 
     @Autowired
-    public void setRoleRepository(AuthorityRepository authorityRepository) {
-        this.authorityRepository = authorityRepository;
+    public void setRoleRepository(RoleRepository roleRepository) {
+        this.roleRepository = roleRepository;
     }
 
     @Autowired
@@ -80,30 +80,30 @@ public class AuthorityService {
                 passwordEncoder.encode(signupRequest.getPassword()));
 
         Set<String> authRole = signupRequest.getAuthority();
-        Set<Authority> authorities = new HashSet<>();
+        Set<Role> authorities = new HashSet<>();
 
         if (authRole == null) {
-            Authority role = authorityRepository.findByName(EAuthority.ROLE_USER)
+            Role role = roleRepository.findByName(ERole.ROLE_USER)
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
             authorities.add(role);
         } else {
             authRole.forEach(role -> {
                 switch (role) {
                     case "admin":
-                        Authority adminRole = authorityRepository.findByName(EAuthority.ROLE_ADMIN)
+                        Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         authorities.add(adminRole);
 
                         break;
                     default:
-                        Authority userRole = authorityRepository.findByName(EAuthority.ROLE_USER)
+                        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         authorities.add(userRole);
                 }
             });
         }
 
-        user.setAuthorities(authorities);
+        user.setRoles(authorities);
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
