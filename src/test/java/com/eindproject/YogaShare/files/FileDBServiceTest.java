@@ -1,11 +1,13 @@
 package com.eindproject.YogaShare.files;
 
+import com.eindproject.YogaShare.YogaShareApplication;
 import com.eindproject.YogaShare.exceptions.RecordNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.util.Optional;
 
@@ -15,6 +17,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @SpringBootTest
+@ContextConfiguration(classes = {YogaShareApplication.class})
 class FileDBServiceTest {
 
     @Mock FileDBRepository fileDBRepository;
